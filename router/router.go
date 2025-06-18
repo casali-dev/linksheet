@@ -17,6 +17,7 @@ func Handler() http.Handler {
 
 	return Chain(mux,
 		middleware.RecoverMiddleware,
+		middleware.RateLimitMiddleware,
 		middleware.LogMiddleware,
 		middleware.JSONMiddleware,
 	)
