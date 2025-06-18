@@ -9,6 +9,12 @@ import (
 	"github.com/casali-dev/linksheet/repositories"
 )
 
+var payload struct {
+	Name        string `json:"name"`
+	Description string `json:"description"`
+	URL         string `json:"url"`
+}
+
 func LinkHandler(w http.ResponseWriter, r *http.Request) {
 	repo := repositories.NewLinkRepository(db.DB)
 
@@ -22,11 +28,12 @@ func LinkHandler(w http.ResponseWriter, r *http.Request) {
 		json.NewEncoder(w).Encode(links)
 
 	case http.MethodPost:
-		var newLink models.Link
-		if err := json.NewDecoder(r.Body).Decode(&newLink); err != nil {
+		if err := json.NewDecoder(r.Body).Decode(&payload); err != nil {
 			http.Error(w, "JSON inválido", http.StatusBadRequest)
 			return
 		}
+
+		newLink := models.NewLink(payload.Name, payload.Description, payload.URL)
 
 		err := repo.Insert(newLink)
 		if err != nil {
