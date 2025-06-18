@@ -10,11 +10,14 @@ import (
 func Handler() http.Handler {
 	mux := http.NewServeMux()
 
-	mux.HandleFunc("/links", handlers.LinkHandler)
-	mux.HandleFunc("/ping", handlers.PingHandler)
-	mux.HandleFunc("/health", handlers.HealthHandler)
+	mux.HandleFunc("/links",   handlers.LinkHandler)
+	mux.HandleFunc("/ping",    handlers.PingHandler)
+	mux.HandleFunc("/health",  handlers.HealthHandler)
 	mux.HandleFunc("/db-test", handlers.DBTestHandler)
 
-	stack := middleware.JSONMiddleware(middleware.LogMiddleware(mux))
-	return stack
+	return Chain(mux,
+		middleware.RecoverMiddleware,
+		middleware.LogMiddleware,
+		middleware.JSONMiddleware,
+	)
 }
