@@ -6,15 +6,20 @@ import (
 	"github.com/casali-dev/linksheet/models"
 )
 
-type LinkRepository struct {
+type LinkRepository interface {
+	GetAll() ([]models.Link, error)
+	Insert(models.Link) error
+}
+
+type SQLiteLinkRepository struct {
 	DB *sql.DB
 }
 
-func NewLinkRepository(db *sql.DB) *LinkRepository {
-	return &LinkRepository{DB: db}
+func NewLinkRepository(db *sql.DB) LinkRepository {
+	return &SQLiteLinkRepository{DB: db}
 }
 
-func (r *LinkRepository) GetAll() ([]models.Link, error) {
+func (r *SQLiteLinkRepository) GetAll() ([]models.Link, error) {
 	rows, err := r.DB.Query(`SELECT id, name, description, url FROM links`)
 	if err != nil {
 		return nil, err
@@ -33,7 +38,7 @@ func (r *LinkRepository) GetAll() ([]models.Link, error) {
 	return links, nil
 }
 
-func (r *LinkRepository) Insert(link models.Link) error {
+func (r *SQLiteLinkRepository) Insert(link models.Link) error {
 	_, err := r.DB.Exec(`
 		INSERT INTO links (id, name, description, url)
 		VALUES (?, ?, ?, ?)
