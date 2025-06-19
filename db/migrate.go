@@ -1,32 +1,31 @@
 package db
 
 import (
+	"database/sql"
 	"embed"
-	"fmt"
 	"log"
+
+	"github.com/pressly/goose/v3"
 )
 
 //go:embed migrations/*.sql
-var migrationFiles embed.FS
+var embeddedMigrations embed.FS
 
-func RunMigrations() error {
-	entries, err := migrationFiles.ReadDir("migrations")
-	if err != nil {
-		return fmt.Errorf("erro lendo arquivos de migration: %w", err)
+func RunMigrations(db *sql.DB) error {
+	log.Println("[DB] Iniciando migrations...")
+
+	goose.SetLogger(log.Default())
+
+	if err := goose.SetDialect("sqlite"); err != nil {
+		return err
 	}
 
-	for _, entry := range entries {
-		content, err := migrationFiles.ReadFile("migrations/" + entry.Name())
-		if err != nil {
-			return fmt.Errorf("erro lendo conteúdo da migration %s: %w", entry.Name(), err)
-		}
+	goose.SetBaseFS(embeddedMigrations)
 
-		if _, err := DB.Exec(string(content)); err != nil {
-			return fmt.Errorf("erro executando migration %s: %w", entry.Name(), err)
-		}
-
-		log.Printf("[DB] Migration %s executada com sucesso", entry.Name())
+	if err := goose.Up(db, "migrations"); err != nil {
+		return err
 	}
 
+	log.Println("[DB] As migrations estão em dia!")
 	return nil
 }

@@ -16,7 +16,9 @@ import (
 func main() {
 	db.Connect()
 	defer db.Close()
-	db.RunMigrations()
+	if err := db.RunMigrations(db.DB); err != nil {
+		log.Fatalf("Erro ao rodar migrations: %v", err)
+	}
 
 	server := &http.Server{
 		Addr:    ":3333",

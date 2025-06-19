@@ -26,7 +26,7 @@ func (s *DefaultLinkService) GetAll() ([]models.Link, error) {
 
 func (s *DefaultLinkService) Create(name, description, url string) (models.Link, error) {
 	if name == "" || url == "" {
-		return models.Link{}, errors.New("Os campos 'name' e 'url' são obrigatórios.")
+		return models.Link{}, errors.New("os campos 'name' e 'url' são obrigatórios")
 	}
 
 	link := models.NewLink(name, description, url)
