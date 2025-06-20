@@ -21,7 +21,7 @@ func (r *SQLiteAPIKeyRepository) GetAuthorIDByKey(key string) (string, error) {
 	err := r.DB.QueryRow("SELECT author_id FROM api_keys WHERE key = ?", key).Scan(&authorID)
 	if err != nil {
 		if err == sql.ErrNoRows {
-			return "", nil // não encontrada
+			return "", nil
 		}
 		return "", err
 	}
