@@ -11,7 +11,7 @@ import (
 
 func PublicLinksHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodGet {
-		middleware.WriteError(w, http.StatusMethodNotAllowed, "Método não permitido")
+		middleware.WriteError(w, http.StatusMethodNotAllowed, "Method not allowed")
 		return
 	}
 
@@ -20,7 +20,7 @@ func PublicLinksHandler(w http.ResponseWriter, r *http.Request) {
 
 	links, err := service.GetPublic()
 	if err != nil {
-		middleware.WriteError(w, http.StatusInternalServerError, "Erro ao buscar links públicos")
+		middleware.WriteError(w, http.StatusInternalServerError, "Failed to fetch public links")
 		return
 	}
 

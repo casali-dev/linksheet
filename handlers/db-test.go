@@ -13,7 +13,7 @@ func DBTestHandler(w http.ResponseWriter, r *http.Request) {
 	var count int
 	err := conn.QueryRow("SELECT COUNT(*) FROM links").Scan(&count)
 	if err != nil {
-		http.Error(w, fmt.Sprintf(`{"error": "Erro ao acessar o banco: %s"}`, err.Error()), http.StatusInternalServerError)
+		http.Error(w, fmt.Sprintf(`{"error": "Database access error: %s"}`, err.Error()), http.StatusInternalServerError)
 		return
 	}
 

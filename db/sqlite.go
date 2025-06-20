@@ -14,19 +14,19 @@ func Connect() {
 
 	DB, err = sql.Open("sqlite", "db/linksheet.db")
 	if err != nil {
-		log.Fatal("[DB] Erro ao abrir o banco:", err)
+		log.Fatal("[DB] Failed to open database:", err)
 	}
 
 	if err := DB.Ping(); err != nil {
-		log.Fatal("[DB] Erro ao conectar ao banco:", err)
+		log.Fatal("[DB] Failed to connect to database:", err)
 	}
 
-	log.Println("[DB] Conexão com SQLite estabelecida com sucesso")
+	log.Println("[DB] Successfully connected to SQLite")
 }
 
 func Close() {
 	if DB != nil {
 		DB.Close()
-		log.Println("[DB] Conexão encerrada")
+		log.Println("[DB] Connection closed")
 	}
 }

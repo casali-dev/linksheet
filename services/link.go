@@ -11,7 +11,7 @@ import (
 
 type LinkService interface {
 	GetPublic() ([]models.PublicLink, error)
-	GetAllByAuthor(authorID string) ([]models.Link, error) // ← nova função
+	GetAllByAuthor(authorID string) ([]models.Link, error)
 	Create(name, description, url string, isPublic bool, authorID string) (models.Link, error)
 }
 
