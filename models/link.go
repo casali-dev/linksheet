@@ -11,11 +11,22 @@ type Link struct {
 	Name        string    `json:"name"`
 	Description string    `json:"description"`
 	URL         string    `json:"url"`
-	CreatedAt   time.Time `json:"createdAt" db:"created_at"`
-	UpdatedAt   time.Time `json:"updatedAt" db:"updated_at"`
+	IsPublic    bool      `json:"isPublic"`
+	AuthorID    string    `json:"authorId"`
+	CreatedAt   time.Time `json:"createdAt"`
+	UpdatedAt   time.Time `json:"updatedAt"`
 }
 
-func NewLink(name, description, url string) Link {
+type PublicLink struct {
+	ID          string    `json:"id"`
+	Name        string    `json:"name"`
+	Description string    `json:"description"`
+	URL         string    `json:"url"`
+	CreatedAt   time.Time `json:"createdAt"`
+	UpdatedAt   time.Time `json:"updatedAt"`
+}
+
+func NewLink(name, description, url string, isPublic bool, authorID string) Link {
 	now := time.Now()
 
 	return Link{
@@ -23,6 +34,8 @@ func NewLink(name, description, url string) Link {
 		Name:        name,
 		Description: description,
 		URL:         url,
+		IsPublic:    isPublic,
+		AuthorID:    authorID,
 		CreatedAt:   now,
 		UpdatedAt:   now,
 	}
