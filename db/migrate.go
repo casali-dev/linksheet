@@ -12,7 +12,7 @@ import (
 var embeddedMigrations embed.FS
 
 func RunMigrations(db *sql.DB) error {
-	log.Println("[DB] Iniciando migrations...")
+	log.Println("[DB] Initializing migrations...")
 
 	goose.SetLogger(log.Default())
 
@@ -26,6 +26,6 @@ func RunMigrations(db *sql.DB) error {
 		return err
 	}
 
-	log.Println("[DB] As migrations estão em dia!")
+	log.Println("[DB] Migrations are up to date!")
 	return nil
 }
