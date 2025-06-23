@@ -3,10 +3,10 @@ package handlers
 import (
 	"net/http"
 
-	"github.com/casali-dev/linksheet/db"
-	"github.com/casali-dev/linksheet/middleware"
-	"github.com/casali-dev/linksheet/repositories"
-	"github.com/casali-dev/linksheet/services"
+	"github.com/casali-dev/linksheet/internal/db"
+	"github.com/casali-dev/linksheet/internal/middleware"
+	"github.com/casali-dev/linksheet/internal/repositories"
+	"github.com/casali-dev/linksheet/internal/services"
 )
 
 func PublicLinksHandler(w http.ResponseWriter, r *http.Request) {

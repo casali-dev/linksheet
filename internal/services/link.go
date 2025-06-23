@@ -5,8 +5,8 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/casali-dev/linksheet/models"
-	"github.com/casali-dev/linksheet/repositories"
+	"github.com/casali-dev/linksheet/internal/models"
+	"github.com/casali-dev/linksheet/internal/repositories"
 )
 
 type LinkService interface {
