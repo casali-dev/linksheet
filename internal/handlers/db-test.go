@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/casali-dev/linksheet/internal/db"
+	"github.com/casali-dev/linkhub/internal/db"
 )
 
 func DBTestHandler(w http.ResponseWriter, r *http.Request) {

@@ -3,8 +3,9 @@ package main
 import (
 	"log"
 
-	"github.com/casali-dev/linksheet/internal/config"
-	"github.com/casali-dev/linksheet/internal/db"
+	"github.com/casali-dev/linkhub/internal/config"
+	"github.com/casali-dev/linkhub/internal/db"
+	_ "github.com/casali-dev/linkhub/scripts"
 )
 
 func main() {

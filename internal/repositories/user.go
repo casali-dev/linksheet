@@ -4,7 +4,7 @@ import (
 	"database/sql"
 	"errors"
 
-	"github.com/casali-dev/linksheet/internal/models"
+	"github.com/casali-dev/linkhub/internal/models"
 )
 
 type UserRepository interface {

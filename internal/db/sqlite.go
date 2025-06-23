@@ -12,7 +12,7 @@ var DB *sql.DB
 func Connect() {
 	var err error
 
-	DB, err = sql.Open("sqlite", "db/linksheet.db")
+	DB, err = sql.Open("sqlite", "data/linkhub.db")
 	if err != nil {
 		log.Fatal("[DB] Failed to open database:", err)
 	}
