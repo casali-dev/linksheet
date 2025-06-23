@@ -4,10 +4,10 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/casali-dev/linksheet/db"
-	"github.com/casali-dev/linksheet/middleware"
-	"github.com/casali-dev/linksheet/repositories"
-	"github.com/casali-dev/linksheet/services"
+	"github.com/casali-dev/linksheet/internal/db"
+	"github.com/casali-dev/linksheet/internal/middleware"
+	"github.com/casali-dev/linksheet/internal/repositories"
+	"github.com/casali-dev/linksheet/internal/services"
 )
 
 type signupRequest struct {

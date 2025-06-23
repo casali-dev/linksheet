@@ -5,9 +5,9 @@ import (
 	"os"
 	"strings"
 
-	"github.com/casali-dev/linksheet/auth"
-	"github.com/casali-dev/linksheet/db"
-	"github.com/casali-dev/linksheet/repositories"
+	"github.com/casali-dev/linksheet/internal/auth"
+	"github.com/casali-dev/linksheet/internal/db"
+	"github.com/casali-dev/linksheet/internal/repositories"
 	"github.com/golang-jwt/jwt/v5"
 )
 

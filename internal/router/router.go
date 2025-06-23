@@ -3,8 +3,8 @@ package router
 import (
 	"net/http"
 
-	"github.com/casali-dev/linksheet/handlers"
-	"github.com/casali-dev/linksheet/middleware"
+	"github.com/casali-dev/linksheet/internal/handlers"
+	"github.com/casali-dev/linksheet/internal/middleware"
 )
 
 func Handler() http.Handler {

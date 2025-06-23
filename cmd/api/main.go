@@ -9,9 +9,9 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/casali-dev/linksheet/config"
-	"github.com/casali-dev/linksheet/db"
-	"github.com/casali-dev/linksheet/router"
+	"github.com/casali-dev/linksheet/internal/config"
+	"github.com/casali-dev/linksheet/internal/db"
+	"github.com/casali-dev/linksheet/internal/router"
 )
 
 func main() {
@@ -19,10 +19,6 @@ func main() {
 
 	db.Connect()
 	defer db.Close()
-
-	if err := db.RunMigrations(db.DB); err != nil {
-		log.Fatalf("[DB] Failed to run migrations: %v", err)
-	}
 
 	port := config.Get("LINKHUB_PORT", "3333")
 
