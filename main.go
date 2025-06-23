@@ -9,26 +9,32 @@ import (
 	"syscall"
 	"time"
 
+	"github.com/casali-dev/linksheet/config"
 	"github.com/casali-dev/linksheet/db"
 	"github.com/casali-dev/linksheet/router"
 )
 
 func main() {
+	config.LoadEnv()
+
 	db.Connect()
 	defer db.Close()
+
 	if err := db.RunMigrations(db.DB); err != nil {
-		log.Fatalf("Erro ao rodar migrations: %v", err)
+		log.Fatalf("[DB] Failed to run migrations: %v", err)
 	}
 
+	port := config.Get("LINKHUB_PORT", "3333")
+
 	server := &http.Server{
-		Addr:    ":3333",
+		Addr:    ":" + port,
 		Handler: router.Handler(),
 	}
 
 	serverErrors := make(chan error, 1)
 
 	go func() {
-		log.Println("Servidor rodando na porta 3333")
+		log.Printf("[Server] Listening on port %s", port)
 		serverErrors <- server.ListenAndServe()
 	}()
 
@@ -37,18 +43,18 @@ func main() {
 
 	select {
 	case err := <-serverErrors:
-		log.Fatalf("Erro no servidor: %v", err)
+		log.Fatalf("[Server] Fatal error: %v", err)
 
 	case sig := <-sigint:
-		log.Printf("Sinal capturado: %v. Encerrando com graceful shutdown...", sig)
+		log.Printf("[Server] Signal caught: %v. Shutting down gracefully...", sig)
 
 		ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 		defer cancel()
 
 		if err := server.Shutdown(ctx); err != nil {
-			log.Printf("Erro ao finalizar servidor: %v", err)
+			log.Printf("[Server] Shutdown error: %v", err)
 		} else {
-			log.Println("Servidor encerrado com sucesso.")
+			log.Println("[Server] Shutdown completed successfully")
 		}
 	}
 }

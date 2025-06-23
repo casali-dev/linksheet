@@ -14,6 +14,7 @@ func Handler() http.Handler {
 	mux.HandleFunc("/health", handlers.HealthHandler)
 	mux.HandleFunc("/db-test", handlers.DBTestHandler)
 	mux.HandleFunc("/links/public", handlers.PublicLinksHandler)
+	mux.HandleFunc("/signup", handlers.SignupHandler)
 
 	mux.Handle("/links", middleware.AuthMiddleware(http.HandlerFunc(handlers.LinkHandler)))
 
