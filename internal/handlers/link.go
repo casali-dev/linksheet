@@ -5,11 +5,11 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/casali-dev/linksheet/internal/auth"
-	"github.com/casali-dev/linksheet/internal/db"
-	"github.com/casali-dev/linksheet/internal/middleware"
-	"github.com/casali-dev/linksheet/internal/repositories"
-	"github.com/casali-dev/linksheet/internal/services"
+	"github.com/casali-dev/linkhub/internal/auth"
+	"github.com/casali-dev/linkhub/internal/db"
+	"github.com/casali-dev/linkhub/internal/middleware"
+	"github.com/casali-dev/linkhub/internal/repositories"
+	"github.com/casali-dev/linkhub/internal/services"
 )
 
 type createLinkPayload struct {

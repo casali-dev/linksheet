@@ -4,8 +4,8 @@ import (
 	"errors"
 	"regexp"
 
-	"github.com/casali-dev/linksheet/internal/models"
-	"github.com/casali-dev/linksheet/internal/repositories"
+	"github.com/casali-dev/linkhub/internal/models"
+	"github.com/casali-dev/linkhub/internal/repositories"
 	"golang.org/x/crypto/bcrypt"
 )
 

@@ -3,7 +3,7 @@ package repositories
 import (
 	"database/sql"
 
-	"github.com/casali-dev/linksheet/internal/models"
+	"github.com/casali-dev/linkhub/internal/models"
 )
 
 type LinkRepository interface {

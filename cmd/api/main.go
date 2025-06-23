@@ -9,9 +9,9 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/casali-dev/linksheet/internal/config"
-	"github.com/casali-dev/linksheet/internal/db"
-	"github.com/casali-dev/linksheet/internal/router"
+	"github.com/casali-dev/linkhub/internal/config"
+	"github.com/casali-dev/linkhub/internal/db"
+	"github.com/casali-dev/linkhub/internal/router"
 )
 
 func main() {

@@ -6,7 +6,7 @@ import (
 	"errors"
 	"time"
 
-	"github.com/casali-dev/linksheet/internal/config"
+	"github.com/casali-dev/linkhub/internal/config"
 	"github.com/google/uuid"
 	"github.com/pressly/goose/v3"
 	"golang.org/x/crypto/bcrypt"
